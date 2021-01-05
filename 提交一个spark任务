@@ -1,0 +1,19 @@
+  1 #!/bin/bash
+  2 SPARK_BIN="/opt/client/Spark/spark/bin/spark-submit"
+  3 SPARK_JAR="obs://bdp-deploy-sg/SPRS/mingxing/offline/work/spark_2.11-0.1.jar"
+  4 SPARK_CONF="
+  5     --deploy-mode cluster
+  6     --driver-memory 5G                                                                                                                                                                                                                                                           
+  7     --conf spark.driver.maxResultSize=10G
+  8     --conf spark.dynamicAllocation.enabled=false
+  9     --executor-memory 10G
+ 10     --executor-cores 4
+ 11     --num-executors 15
+ 12     --class Content.NewFilter
+ 13 "
+ 14 app="likeit"
+ 15 country="ID" 
+ 16 cmd="$SPARK_BIN $SPARK_CONF $SPARK_JAR 20210105 $app $country"
+ 17 echo ${cmd}
+ 18 eval ${cmd}
+~                
